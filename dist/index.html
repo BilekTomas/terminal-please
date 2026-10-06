@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07131b">
+  <meta name="description" content="2D hra z prostředí check-in přepážky na pražském letišti.">
+  <title>TERMINÁL, PROSÍM! — Check-in hra</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2307131b'/%3E%3Cpath d='M7 34l21-7V12l7 2 2 11 18-6v7l-17 10-1 14 8 4v4l-13-2-13 2v-4l8-4 1-11-21 2z' fill='%23f2c14e'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="game-shell" id="gameShell">
+    <header class="topbar">
+      <div class="brand-lockup">
+        <div class="brand-mark" aria-hidden="true">PRG</div>
+        <div>
+          <p class="eyebrow">Terminál 2 · Přepážka B12</p>
+          <h1>TERMINÁL, PROSÍM!</h1>
+        </div>
+      </div>
+
+      <div class="flight-board" aria-label="Aktuální let">
+        <span class="board-label">ODLET</span>
+        <strong id="flightCode">OK 761</strong>
+        <span id="flightRoute">PARIS · 18:45</span>
+        <span class="status-light">CHECK-IN</span>
+      </div>
+
+      <div class="shift-stats">
+        <div><span>ČAS</span><strong id="timer">04:00</strong></div>
+        <div><span>SKÓRE</span><strong id="score">0000</strong></div>
+        <div><span>CHYBY</span><strong id="strikes" aria-label="Počet chyb">○ ○ ○</strong></div>
+      </div>
+    </header>
+
+    <section class="game-stage">
+      <section class="terminal" aria-label="Pohled shora na odbavovací halu">
+        <div class="terminal-sign sign-a">ODLETY / DEPARTURES</div>
+        <div class="terminal-sign sign-b">B12</div>
+        <div class="floor-line line-a"></div>
+        <div class="floor-line line-b"></div>
+
+        <div class="queue-lane" aria-label="Fronta cestujících">
+          <div class="belt belt-1"></div>
+          <div class="belt belt-2"></div>
+          <div class="belt belt-3"></div>
+          <div id="queuePeople" class="queue-people"></div>
+          <span class="queue-label">FRONTA</span>
+        </div>
+
+        <div class="current-zone">
+          <div id="currentTravelerSprite" class="character current-traveler sprite-1" aria-hidden="true"></div>
+          <div class="conversation" id="conversation" role="status">
+            <span id="travelerName">—</span>
+            <p id="travelerLine">Dobrý den.</p>
+          </div>
+        </div>
+
+        <div class="counter" aria-hidden="true">
+          <div class="counter-top"><span>B12</span></div>
+          <div class="scale"><span id="scaleWeight">— kg</span></div>
+          <div class="conveyor"></div>
+          <div class="monitor"><span id="monitorStatus">PŘIPRAVENO</span></div>
+        </div>
+
+        <div class="agent-station">
+          <div class="character agent sprite-0" aria-label="Check-in agentka v uniformě"></div>
+          <span class="agent-name">E. NOVÁKOVÁ</span>
+        </div>
+      </section>
+
+      <aside class="workdesk" aria-label="Pracovní plocha pro kontrolu cestujícího">
+        <div class="desk-heading">
+          <div>
+            <span class="desk-kicker">PŘÍPAD <b id="caseNumber">01</b> / <b id="caseTotal">08</b></span>
+            <h2>KONTROLA CESTUJÍCÍHO</h2>
+          </div>
+          <button class="icon-button" id="soundButton" type="button" aria-label="Vypnout zvuk" title="Zvuk">♪</button>
+        </div>
+
+        <nav class="tabs" aria-label="Kontrolované podklady">
+          <button class="tab active" data-tab="docs" type="button">DOKLADY <span id="docsAlert"></span></button>
+          <button class="tab" data-tab="bag" type="button">ZAVAZADLO <span id="bagAlert"></span></button>
+          <button class="tab" data-tab="talk" type="button">ROZHOVOR <span id="talkAlert"></span></button>
+        </nav>
+
+        <div class="evidence-area">
+          <section class="tab-panel active" data-panel="docs">
+            <article class="document passport" id="passportCard">
+              <div class="doc-top"><span>EVROPSKÁ UNIE</span><b>PAS</b></div>
+              <div class="doc-content">
+                <div class="passport-photo" id="passportPhoto"><span>FOTO</span></div>
+                <dl>
+                  <div><dt>JMÉNO</dt><dd id="passportName">—</dd></div>
+                  <div><dt>NÁRODNOST</dt><dd id="nationality">—</dd></div>
+                  <div><dt>ČÍSLO</dt><dd id="passportNumber">—</dd></div>
+                  <div><dt>PLATNOST DO</dt><dd id="passportExpiry">—</dd></div>
+                </dl>
+              </div>
+              <div class="mrz" id="mrz">P&lt;CZE&lt;&lt;NOVAK&lt;&lt;EVA&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</div>
+            </article>
+
+            <article class="document boarding-card">
+              <span class="stub">BOARDING PASS</span>
+              <div><small>CESTUJÍCÍ</small><strong id="ticketName">—</strong></div>
+              <div class="ticket-grid">
+                <span><small>LET</small><b id="ticketFlight">—</b></span>
+                <span><small>CÍL</small><b id="ticketDestination">—</b></span>
+                <span><small>ČAS</small><b id="ticketTime">—</b></span>
+                <span><small>TŘÍDA</small><b id="ticketClass">—</b></span>
+              </div>
+            </article>
+          </section>
+
+          <section class="tab-panel" data-panel="bag">
+            <div class="scanner-screen">
+              <div class="scan-lines"></div>
+              <div class="bag-shape" aria-hidden="true"><span>✦</span></div>
+              <p>RTG SKEN · ZAVAZADLO <b id="bagTag">—</b></p>
+            </div>
+            <div class="bag-facts">
+              <div><small>HMOTNOST</small><strong id="bagWeight">—</strong></div>
+              <div><small>LIMIT</small><strong id="bagLimit">—</strong></div>
+              <div><small>VÝSLEDEK RTG</small><strong id="bagScan">—</strong></div>
+            </div>
+            <button class="inspect-button" id="scanButton" type="button">SPUSTIT RTG KONTROLU</button>
+          </section>
+
+          <section class="tab-panel" data-panel="talk">
+            <div class="interview-card">
+              <span class="interview-icon">“</span>
+              <p id="interviewText">—</p>
+              <div class="observation">
+                <small>POZOROVÁNÍ AGENTKY</small>
+                <strong id="observationText">—</strong>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="rule-strip">
+          <span>DNES PLATÍ</span>
+          <p id="dailyRule">Pas musí být platný min. 3 měsíce po návratu · Limit 23 kg · Jméno musí souhlasit</p>
+        </div>
+
+        <div class="actions" aria-label="Rozhodnutí">
+          <button class="action approve" data-action="approve" type="button"><kbd>1</kbd><span>ODBAVIT</span><small>Doklady v pořádku</small></button>
+          <button class="action deny" data-action="deny" type="button"><kbd>2</kbd><span>ZAMÍTNOUT</span><small>Nesplňuje podmínky</small></button>
+          <button class="action fee" data-action="fee" type="button"><kbd>3</kbd><span>DOPLATEK</span><small>Nadváha zavazadla</small></button>
+          <button class="action alert" data-action="alert" type="button"><kbd>4</kbd><span>PŘIVOLAT POMOC</span><small>Supervizor / bezpečnost</small></button>
+        </div>
+
+        <div class="result-panel" id="resultPanel" aria-live="assertive">
+          <div id="resultStamp">SPRÁVNĚ</div>
+          <div><strong id="resultTitle">Dobrá práce</strong><p id="resultReason">—</p></div>
+          <button id="nextButton" type="button">DALŠÍ CESTUJÍCÍ <kbd>Enter</kbd></button>
+        </div>
+      </aside>
+    </section>
+
+    <footer class="game-footer">
+      <span>LET 761 · LETIŠTĚ VÁCLAVA HAVLA PRAHA / PAŘÍŽ</span>
+      <span>ČAS V SIMULACI: 15. 10. 2026</span>
+      <span>KLÁVESY 1–4 · ENTER</span>
+    </footer>
+  </main>
+
+  <dialog class="intro-dialog" id="introDialog">
+    <div class="dialog-grid">
+      <div class="dialog-art">
+        <div class="character dialog-agent sprite-0" aria-hidden="true"></div>
+        <div class="stamp-ring">B12</div>
+      </div>
+      <div class="dialog-copy">
+        <span class="dialog-label">SMĚNA 01 · LETIŠTĚ VÁCLAVA HAVLA PRAHA</span>
+        <h2>VÍTEJTE NA PŘEPÁŽCE</h2>
+        <p>Odbavte osm cestujících před uzavřením letu. Porovnejte doklady, zvažte zavazadlo a všímejte si chování. Některé případy jsou rutinní. Jiné ani trochu.</p>
+        <ol>
+          <li><b>Prohlédněte</b> všechny tři záložky.</li>
+          <li><b>Rozhodněte</b> pomocí čtyř akcí nebo kláves 1–4.</li>
+          <li><b>Udržte směnu</b> pod třemi chybami.</li>
+        </ol>
+        <div class="dialog-actions">
+          <button id="startButton" type="button">OTEVŘÍT PŘEPÁŽKU</button>
+          <span>Nejlepší skóre: <b id="highScoreIntro">0000</b></span>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog class="summary-dialog" id="summaryDialog">
+    <div class="summary-card">
+      <span class="dialog-label" id="summaryLabel">SMĚNA UKONČENA</span>
+      <h2 id="summaryTitle">LET UZAVŘEN</h2>
+      <div class="summary-score" id="summaryScore">0000</div>
+      <div class="summary-stats">
+        <div><small>SPRÁVNĚ</small><strong id="correctSummary">0 / 8</strong></div>
+        <div><small>CHYBY</small><strong id="mistakeSummary">0</strong></div>
+        <div><small>BONUS ZA ČAS</small><strong id="timeBonusSummary">+0</strong></div>
+      </div>
+      <p id="summaryText">—</p>
+      <button id="restartButton" type="button">NOVÁ SMĚNA</button>
+    </div>
+  </dialog>
+
+  <script src="game.js"></script>
+</body>
+</html>
