@@ -351,6 +351,27 @@ dialog::backdrop { background: rgba(0,8,12,.82); backdrop-filter: blur(7px); }
   .agent { width: 112px; height: 168px; }
   .workdesk { border-left: 0; border-top: 5px solid #030b0f; min-height: 690px; }
   .game-footer { display: none; }
+  .result-panel.show {
+    position: fixed;
+    z-index: 1200;
+    left: 12px;
+    right: 12px;
+    bottom: max(12px, env(safe-area-inset-bottom));
+    width: auto;
+    max-height: calc(100svh - 24px);
+    overflow: auto;
+    margin: 0;
+    padding: 16px;
+    border: 2px solid var(--cyan);
+    background: #0e252e;
+    box-shadow: 0 0 0 100vmax rgba(0, 8, 12, .74), 0 24px 70px rgba(0, 0, 0, .72);
+    animation: result-mobile-in .22s cubic-bezier(.2,.8,.2,1);
+  }
+  .result-panel.show.wrong { border-color: var(--red); }
+}
+
+@keyframes result-mobile-in {
+  from { opacity: 0; transform: translateY(20px); }
 }
 
 @media (max-width: 560px) {
@@ -375,6 +396,7 @@ dialog::backdrop { background: rgba(0,8,12,.82); backdrop-filter: blur(7px); }
   .actions { grid-template-columns: repeat(2, 1fr); }
   .action { min-height: 64px; }
   .result-panel { grid-template-columns: auto 1fr; }
+  .result-panel.show { padding: 14px; gap: 10px; }
   #nextButton { grid-column: 1 / -1; }
   .dialog-grid { display: block; }
   .dialog-art { height: 170px; }

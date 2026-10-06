@@ -763,6 +763,7 @@ function decide(action) {
   if (state.strikes >= 3) ui.nextButton.textContent = "UKONČIT SMĚNU";
   else if (state.index === state.cases.length - 1) ui.nextButton.textContent = "UZAVŘÍT LET";
   else ui.nextButton.innerHTML = "DALŠÍ CESTUJÍCÍ <kbd>Enter</kbd>";
+  requestAnimationFrame(() => ui.nextButton.focus({ preventScroll: true }));
 }
 
 function actionLabel(action) {
