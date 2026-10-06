@@ -38,6 +38,11 @@
       <section class="terminal" aria-label="Pohled shora na odbavovací halu">
         <div class="terminal-sign sign-a">ODLETY / DEPARTURES</div>
         <div class="terminal-sign sign-b">B12</div>
+        <div class="glass-wall" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="remote-counter counter-c04" aria-hidden="true"><b>C04</b><span>WARSAW</span></div>
+        <div class="remote-counter counter-a07" aria-hidden="true"><b>A07</b><span>LONDON</span></div>
+        <div class="hall-traffic" id="hallTraffic" aria-hidden="true"></div>
+        <div class="cleaning-cart" aria-hidden="true"><i></i><span>PRG</span></div>
         <div class="floor-line line-a"></div>
         <div class="floor-line line-b"></div>
         <div class="hall-board" aria-hidden="true">
@@ -62,6 +67,11 @@
 
         <div class="floor-wayfinding" aria-hidden="true"><b>B</b><span>10–18</span></div>
 
+        <div class="event-banner" id="eventBanner" role="status" aria-live="polite">
+          <span id="eventIcon">!</span>
+          <div><small>PROVOZNÍ HLÁŠENÍ</small><strong id="eventTitle">—</strong><p id="eventText">—</p></div>
+        </div>
+
         <div class="current-zone">
           <div id="currentTravelerSprite" class="character current-traveler sprite-1" aria-hidden="true"></div>
           <div class="conversation" id="conversation" role="status">
@@ -73,8 +83,9 @@
         <div class="counter" aria-hidden="true">
           <div class="counter-top"><span>B12</span></div>
           <div class="scale"><span id="scaleWeight">— kg</span></div>
-          <div class="conveyor"></div>
+          <div class="conveyor"><i id="beltBag"></i></div>
           <div class="monitor"><span id="monitorStatus">PŘIPRAVENO</span></div>
+          <div class="ticket-printer"><i id="printedTicket">BOARDING<br>PASS</i></div>
         </div>
 
         <div class="agent-station">
@@ -129,7 +140,7 @@
           <section class="tab-panel" data-panel="bag">
             <div class="scanner-screen">
               <div class="scan-lines"></div>
-              <div class="bag-shape" aria-hidden="true"><span>✦</span></div>
+              <div class="bag-shape" aria-hidden="true"><span id="bagSymbol">✦</span></div>
               <p>RTG SKEN · ZAVAZADLO <b id="bagTag">—</b></p>
             </div>
             <div class="bag-facts">
@@ -148,12 +159,13 @@
                 <small>POZOROVÁNÍ AGENTKY</small>
                 <strong id="observationText">—</strong>
               </div>
+              <div class="dialogue-choices" id="dialogueChoices" aria-label="Otázky pro cestujícího"></div>
             </div>
           </section>
         </div>
 
         <div class="rule-strip">
-          <span>DNES PLATÍ</span>
+          <span id="ruleBadge">DNES PLATÍ</span>
           <p id="dailyRule">Pas musí být platný min. 3 měsíce po návratu · Limit 23 kg · Jméno musí souhlasit</p>
         </div>
 
@@ -188,10 +200,10 @@
       <div class="dialog-copy">
         <span class="dialog-label">SMĚNA 01 · LETIŠTĚ VÁCLAVA HAVLA PRAHA</span>
         <h2>VÍTEJTE NA PŘEPÁŽCE</h2>
-        <p>Odbavte osm náhodně vybraných cestujících z 24 možných situací. Porovnejte doklady, zvažte zavazadlo a všímejte si chování. Každá směna je jiná.</p>
+        <p>Odbavte osm náhodně vybraných cestujících z více než třiceti situací. Denní pravidla, kombinované problémy i provozní události pokaždé promění směnu.</p>
         <ol>
-          <li><b>Prohlédněte</b> všechny tři záložky.</li>
-          <li><b>Rozhodněte</b> pomocí čtyř akcí nebo kláves 1–4.</li>
+          <li><b>Prohlédněte</b> doklady, spusťte potřebné RTG a ptejte se.</li>
+          <li><b>Řiďte se</b> dnešním nařízením a řešte nejzávažnější problém.</li>
           <li><b>Udržte směnu</b> pod třemi chybami.</li>
         </ol>
         <div class="dialog-actions">
@@ -207,10 +219,13 @@
       <span class="dialog-label" id="summaryLabel">SMĚNA UKONČENA</span>
       <h2 id="summaryTitle">LET UZAVŘEN</h2>
       <div class="summary-score" id="summaryScore">0000</div>
+      <div class="shift-grade"><span>HODNOCENÍ SMĚNY</span><strong id="gradeSummary">A</strong></div>
       <div class="summary-stats">
         <div><small>SPRÁVNĚ</small><strong id="correctSummary">0 / 8</strong></div>
         <div><small>CHYBY</small><strong id="mistakeSummary">0</strong></div>
         <div><small>BONUS ZA ČAS</small><strong id="timeBonusSummary">+0</strong></div>
+        <div><small>PRŮMĚRNÝ ČAS</small><strong id="averageSummary">0 s</strong></div>
+        <div><small>SPOKOJENOST</small><strong id="satisfactionSummary">100 %</strong></div>
       </div>
       <p id="summaryText">—</p>
       <button id="restartButton" type="button">NOVÁ SMĚNA</button>

@@ -557,7 +557,272 @@ const CASES = [
     correct: "approve",
     reason: "Speciální přeprava je uhrazena a všechny doklady jsou v pořádku.",
     riskTab: null
+  },
+  {
+    id: "hen-in-suitcase",
+    name: "Věra Kropáčková",
+    sprite: 8,
+    nationality: "ČESKÁ REPUBLIKA",
+    passportNumber: "CZ6148203",
+    passportExpiry: "14. 07. 2031",
+    ticketName: "VĚRA KROPÁČKOVÁ",
+    flight: "OK 761",
+    destination: "PARIS",
+    time: "18:45",
+    travelClass: "ECONOMY",
+    bagWeight: 11.8,
+    bagLimit: 23,
+    bagScan: "ŽIVÉ ZVÍŘE · SLEPICE",
+    bagTag: "PRG-CLUCK",
+    bagSymbol: "🐔",
+    line: "Když to občas zakdáká, je to jen vyzvánění telefonu.",
+    interview: "Kufr se lehce pohybuje a z větracích otvorů vykukuje peří.",
+    observation: "Cestující tvrdí, že zavazadlo balila sama, ale odmítá ho otevřít.",
+    correct: "alert",
+    reason: "Živé zvíře ukryté v kufru musí převzít bezpečnostní a veterinární kontrola.",
+    scanRequired: true,
+    suspicious: true,
+    extreme: true,
+    riskTab: "bag",
+    dialogue: [
+      { q: "Kdo balil tento kufr?", a: "Já… tedy sousedka. Slepice cestování snáší dobře.", reveal: "Cestující přiznává živé zvíře bez přepravních dokladů." },
+      { q: "Proč má kufr větrací otvory?", a: "To je moderní odvětrávání. Prosím, hlavně s ním netřeste." },
+      { q: "Můžete zavazadlo otevřít?", a: "Raději ne. Božena je dnes nervózní." }
+    ]
+  },
+  {
+    id: "wedding-dress",
+    name: "Eliška Vránová",
+    sprite: 5,
+    nationality: "ČESKÁ REPUBLIKA",
+    passportNumber: "CZ7051844",
+    passportExpiry: "08. 03. 2032",
+    ticketName: "ELIŠKA VRÁNOVÁ",
+    flight: "OK 761",
+    destination: "PARIS",
+    time: "18:45",
+    travelClass: "ECONOMY",
+    bagWeight: 26.4,
+    bagLimit: 23,
+    bagScan: "ŠATY · 14 PÁRŮ BOT",
+    bagTag: "PRG-BRIDE",
+    bagSymbol: "♛",
+    line: "Za dvě hodiny se vdávám v Paříži. Ty boty opravdu potřebuji všechny.",
+    interview: "Doklady i rezervace souhlasí. Kufr překračuje hmotnostní limit.",
+    observation: "Emotivní situace pravidla pro zavazadla nemění.",
+    correct: "fee",
+    reason: "Svatební kufr má nadváhu 3,4 kg, proto je nutný doplatek.",
+    extreme: true,
+    riskTab: "bag"
+  },
+  {
+    id: "twins-passport",
+    name: "Robin Černý",
+    sprite: 1,
+    nationality: "ČESKÁ REPUBLIKA",
+    passportNumber: "CZ8814091",
+    passportExpiry: "22. 09. 2030",
+    ticketName: "ROBIN ČERNÝ",
+    flight: "OK 761",
+    destination: "PARIS",
+    time: "18:45",
+    travelClass: "ECONOMY",
+    bagWeight: 16.0,
+    bagLimit: 23,
+    bagScan: "BEZ NÁLEZU",
+    bagTag: "PRG-TWIN",
+    line: "Jsme jednovaječná dvojčata. Tenhle pas je skoro můj.",
+    interview: "Na dokladu je jméno Roman Černý a jiné datum narození.",
+    observation: "Podobná fotografie nenahrazuje vlastní platný cestovní doklad.",
+    correct: "deny",
+    reason: "Cestující předložil pas svého dvojčete, nikoli vlastní doklad.",
+    extreme: true,
+    suspicious: true,
+    riskTab: "docs"
+  },
+  {
+    id: "urn-no-papers",
+    name: "Margaret Bloom",
+    sprite: 9,
+    nationality: "SPOJENÉ KRÁLOVSTVÍ",
+    passportNumber: "550119384",
+    passportExpiry: "17. 01. 2033",
+    ticketName: "MARGARET BLOOM",
+    flight: "OK 761",
+    destination: "PARIS",
+    time: "18:45",
+    travelClass: "ECONOMY",
+    bagWeight: 7.1,
+    bagLimit: 23,
+    bagScan: "URNA · ZAPEČETĚNÁ NÁDOBA",
+    bagTag: "PRG-URNS",
+    bagSymbol: "◈",
+    line: "Manžel chtěl vždycky vidět Paříž. Bohužel nemám potvrzení krematoria.",
+    interview: "Urna je zapečetěná, ale chybí úmrtní list i přepravní potvrzení.",
+    observation: "Přepravu lidských ostatků musí schválit specializovaný pracovník.",
+    correct: "alert",
+    reason: "Bez potřebné dokumentace musí přepravu urny posoudit supervizor.",
+    scanRequired: true,
+    extreme: true,
+    riskTab: "bag"
+  },
+  {
+    id: "dumpling-case",
+    name: "Karel Brambora",
+    sprite: 3,
+    nationality: "ČESKÁ REPUBLIKA",
+    passportNumber: "CZ4419802",
+    passportExpiry: "09. 05. 2034",
+    ticketName: "KAREL BRAMBORA",
+    flight: "OK 761",
+    destination: "PARIS",
+    time: "18:45",
+    travelClass: "BUSINESS",
+    bagWeight: 31.7,
+    bagLimit: 32,
+    bagScan: "86 HOUSKOVÝCH KNEDLÍKŮ",
+    bagTag: "PRG-DUMPL",
+    bagSymbol: "●",
+    line: "Synovec má v Paříži restauraci. Knedlíky jsou vakuované, počítal jsem je dvakrát.",
+    interview: "Potraviny jsou zabalené, deklarované a zavazadlo je v business limitu.",
+    observation: "Neobvyklé, ale pro tento let povolené. Dokumenty souhlasí.",
+    correct: "approve",
+    reason: "Kuriózní obsah není zakázaný a zavazadlo je těsně pod limitem business tarifu.",
+    scanRequired: true,
+    extreme: true,
+    riskTab: "bag"
+  },
+  {
+    id: "fake-pilot",
+    name: "Igor Falšný",
+    sprite: 7,
+    nationality: "SLOVENSKO",
+    passportNumber: "SK9013317",
+    passportExpiry: "26. 04. 2032",
+    ticketName: "IGOR FALŠNÝ",
+    flight: "CREW 001",
+    destination: "PARIS",
+    time: "18:45",
+    travelClass: "CREW",
+    bagWeight: 5.0,
+    bagLimit: 23,
+    bagScan: "ČEPICE · PLASTOVÁ KŘÍDLA",
+    bagTag: "PRG-CAPT",
+    bagSymbol: "✈",
+    line: "Kapitán Falšný, pustíte mě rovnou do kokpitu? Uniformu mám z internetu—tedy ze skladu.",
+    interview: "Jméno není na seznamu posádky a průkaz zaměstnance je vytištěný na kartonu.",
+    observation: "Osoba se vydává za člena posádky a pokouší se získat přístup do neveřejné zóny.",
+    correct: "alert",
+    reason: "Falešného člena posádky musí okamžitě převzít letištní bezpečnost.",
+    suspicious: true,
+    extreme: true,
+    riskTab: "talk"
+  },
+  {
+    id: "expired-and-heavy",
+    name: "Giulia Conti",
+    sprite: 4,
+    nationality: "ITÁLIE",
+    passportNumber: "IT7001842",
+    passportExpiry: "03. 09. 2026",
+    ticketName: "GIULIA CONTI",
+    flight: "OK 761",
+    destination: "PARIS",
+    time: "18:45",
+    travelClass: "ECONOMY",
+    bagWeight: 29.2,
+    bagLimit: 23,
+    bagScan: "BEZ NÁLEZU",
+    bagTag: "PRG-2BAD",
+    line: "Doplatek zaplatím. Pak už je všechno v pořádku, ano?",
+    interview: "Kufr má nadváhu a datum platnosti pasu již uplynulo.",
+    observation: "Dva problémy současně. Neplatný doklad má přednost před řešením poplatku.",
+    correct: "deny",
+    reason: "Kufr má nadváhu, ale hlavní překážkou je expirovaný pas. Odbavení se zamítá.",
+    highlight: "expiry",
+    combined: true,
+    riskTab: "docs"
+  },
+  {
+    id: "wrong-flight-battery",
+    name: "Theo Martin",
+    sprite: 6,
+    nationality: "FRANCIE",
+    passportNumber: "20FR81931",
+    passportExpiry: "10. 10. 2031",
+    ticketName: "THEO MARTIN",
+    flight: "AF 1083",
+    destination: "AMSTERDAM",
+    time: "19:20",
+    travelClass: "ECONOMY",
+    bagWeight: 24.6,
+    bagLimit: 23,
+    bagScan: "POŠKOZENÁ LITHIOVÁ BATERIE",
+    bagTag: "PRG-3BAD",
+    bagSymbol: "⚡",
+    line: "Jiný let, těžší kufr… ale tu baterii jsem určitě vyndal.",
+    interview: "Letenka patří jiné aerolince. Kufr má nadváhu a z boční kapsy se ozývá praskání.",
+    observation: "Tři problémy současně. Poškozená baterie představuje bezprostřední bezpečnostní riziko.",
+    correct: "alert",
+    reason: "Navzdory špatnému letu a nadváze má přednost bezpečnostní zásah kvůli poškozené baterii.",
+    scanRequired: true,
+    suspicious: true,
+    combined: true,
+    highlight: "flight",
+    riskTab: "bag",
+    dialogue: [
+      { q: "Kdo balil zavazadlo?", a: "Asistent. Já jsem do něj jen přidal dron a několik baterií.", reveal: "Cestující potvrzuje další baterie v odbaveném kufru." },
+      { q: "Proč jste u jiné přepážky?", a: "Čísla letů jsou si přece všechna podobná." },
+      { q: "Co vydává ten zvuk?", a: "Možná baterie. V autě mi včera spadla na zem." }
+    ]
+  },
+  {
+    id: "no-passport-coercion",
+    name: "Amina Rahman",
+    sprite: 2,
+    nationality: "MAROKO",
+    passportNumber: "—",
+    passportExpiry: "—",
+    ticketName: "AMINA RAHMAN",
+    flight: "OK 761",
+    destination: "PARIS",
+    time: "18:45",
+    travelClass: "ECONOMY",
+    bagWeight: 6.8,
+    bagLimit: 23,
+    bagScan: "BEZ NÁLEZU",
+    bagTag: "PRG-SAFE",
+    line: "Pas má muž u vchodu. Řekl, že nesmím mluvit a musím nastoupit.",
+    interview: "Cestující nemá doklad a opakovaně se bojácně ohlíží k hale.",
+    observation: "Chybějící pas by běžně znamenal zamítnutí, známky nátlaku ale vyžadují bezpečnostní postup.",
+    correct: "alert",
+    reason: "Podezření na nátlak má přednost před běžným zamítnutím kvůli chybějícímu pasu.",
+    missingPassport: true,
+    suspicious: true,
+    combined: true,
+    riskTab: "talk"
   }
+];
+
+const SHIFT_RULES = [
+  { id: "standard", badge: "STANDARDNÍ REŽIM", text: "Pas min. 3 měsíce po návratu · Economy 23 kg · Jméno musí souhlasit", economyLimit: 23 },
+  { id: "light-bags", badge: "OMEZENÍ NÁKLADU", text: "Dnešní limit Economy je 20 kg · Business 32 kg · Ostatní pravidla beze změny", economyLimit: 20 },
+  { id: "scan-all", badge: "ZVÝŠENÁ OSTRAHA", text: "Před každým rozhodnutím je povinná RTG kontrola všech odbavených zavazadel", economyLimit: 23, requireScan: true },
+  { id: "talk-first", badge: "BEZPEČNOSTNÍ PROFIL", text: "U podezřelého chování položte alespoň jednu doplňující otázku", economyLimit: 23, requireSuspiciousTalk: true }
+];
+
+const HALL_EVENTS = [
+  { id: "gate", icon: "↗", title: "ZMĚNA GATU", text: "Odlet do Paříže byl přesunut na gate B18. Odbavení pokračuje.", announcement: "Upozornění pro cestující letu do Paříže. Odlet byl přesunut na gate B osmnáct." },
+  { id: "belt", icon: "⚙", title: "PÁS ZNOVU V PROVOZU", text: "Technici obnovili zavazadlový pás. Další kufry lze odbavit.", announcement: "Zavazadlový pás u přepážky B dvanáct je opět v provozu." },
+  { id: "security", icon: "!", title: "NAMÁTKOVÁ KONTROLA", text: "Bezpečnost vyžaduje RTG u následujícího cestujícího.", announcement: "Probíhá namátková bezpečnostní kontrola. Děkujeme za spolupráci.", nextScanRequired: true },
+  { id: "system", icon: "⌁", title: "SYSTÉM JE POMALÝ", text: "Síť krátce vypadla. Směna dostává 12 sekund navíc.", announcement: "Omlouváme se za krátké technické zdržení.", seconds: 12 },
+  { id: "last-call", icon: "⌛", title: "POSLEDNÍ VÝZVA", text: "Gate zahájil nástup. Za rychlé správné rozhodnutí získáte bonus.", announcement: "Poslední výzva pro cestující letu O K sedm šest jedna do Paříže.", scoreBoost: 35 }
+];
+
+const DEFAULT_DIALOGUE = [
+  { q: "Kdo balil zavazadlo?", key: "packed" },
+  { q: "Jaký je účel cesty?", key: "purpose" },
+  { q: "Máte další doklady?", key: "documents" }
 ];
 
 const $ = (selector) => document.querySelector(selector);
@@ -577,10 +842,25 @@ const ui = {
   intro: $("#introDialog"), summary: $("#summaryDialog"), startButton: $("#startButton"),
   restartButton: $("#restartButton"), highScoreIntro: $("#highScoreIntro"), soundButton: $("#soundButton"),
   scanButton: $("#scanButton"), scanner: $(".scanner-screen"), monitorStatus: $("#monitorStatus"),
-  docsAlert: $("#docsAlert"), bagAlert: $("#bagAlert"), talkAlert: $("#talkAlert")
+  docsAlert: $("#docsAlert"), bagAlert: $("#bagAlert"), talkAlert: $("#talkAlert"),
+  conversation: $("#conversation"), dialogueChoices: $("#dialogueChoices"), dailyRule: $("#dailyRule"),
+  ruleBadge: $("#ruleBadge"), eventBanner: $("#eventBanner"), eventIcon: $("#eventIcon"),
+  eventTitle: $("#eventTitle"), eventText: $("#eventText"), hallTraffic: $("#hallTraffic"),
+  bagSymbol: $("#bagSymbol"), conveyor: $(".conveyor"), ticketPrinter: $(".ticket-printer"),
+  gradeSummary: $("#gradeSummary"), averageSummary: $("#averageSummary"), satisfactionSummary: $("#satisfactionSummary")
 };
 
-let state = { cases: [], index: 0, score: 0, strikes: 0, correct: 0, seconds: 240, answered: false, running: false, scanDone: false, sound: true, timerId: null, scanTimer: null };
+let state = {
+  cases: [], index: 0, score: 0, strikes: 0, correct: 0, seconds: 240,
+  answered: false, running: false, scanDone: false, sound: true,
+  timerId: null, scanTimer: null, eventTimer: null, caseStartedAt: 0,
+  totalDecisionSeconds: 0, satisfaction: 100, questionsAsked: new Set(),
+  rule: SHIFT_RULES[0], events: [], nextScanRequired: false, scoreBoost: 0
+};
+
+let audioContext = null;
+let masterGain = null;
+let ambientSource = null;
 
 function shuffle(items) {
   const copy = [...items];
@@ -595,37 +875,252 @@ function escapeMrz(name) {
   return `P<CZE<<${name.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/ /g, "<")}<<<<<<<<<<<<`;
 }
 
-function tone(frequency, duration = .08, type = "sine") {
+function ensureAudio() {
+  if (audioContext) {
+    if (audioContext.state === "suspended") audioContext.resume();
+    return audioContext;
+  }
+  try {
+    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    masterGain = audioContext.createGain();
+    masterGain.gain.value = state.sound ? 1 : 0;
+    masterGain.connect(audioContext.destination);
+
+    const seconds = 3;
+    const buffer = audioContext.createBuffer(1, audioContext.sampleRate * seconds, audioContext.sampleRate);
+    const channel = buffer.getChannelData(0);
+    let last = 0;
+    for (let i = 0; i < channel.length; i += 1) {
+      last = (last + (Math.random() * 2 - 1) * .045) / 1.045;
+      channel[i] = last * .32;
+    }
+    ambientSource = audioContext.createBufferSource();
+    const ambientGain = audioContext.createGain();
+    const filter = audioContext.createBiquadFilter();
+    filter.type = "lowpass";
+    filter.frequency.value = 480;
+    ambientGain.gain.value = .035;
+    ambientSource.buffer = buffer;
+    ambientSource.loop = true;
+    ambientSource.connect(filter).connect(ambientGain).connect(masterGain);
+    ambientSource.start();
+  } catch (_) {}
+  return audioContext;
+}
+
+function tone(frequency, duration = .08, type = "sine", volume = .055, delay = 0) {
   if (!state.sound) return;
   try {
-    const context = new (window.AudioContext || window.webkitAudioContext)();
+    const context = ensureAudio();
+    if (!context || !masterGain) return;
     const oscillator = context.createOscillator();
     const gain = context.createGain();
+    const start = context.currentTime + delay;
     oscillator.type = type;
     oscillator.frequency.value = frequency;
-    gain.gain.setValueAtTime(.055, context.currentTime);
-    gain.gain.exponentialRampToValueAtTime(.001, context.currentTime + duration);
-    oscillator.connect(gain).connect(context.destination);
-    oscillator.start();
-    oscillator.stop(context.currentTime + duration);
-    oscillator.onended = () => context.close();
+    gain.gain.setValueAtTime(Math.max(.001, volume), start);
+    gain.gain.exponentialRampToValueAtTime(.001, start + duration);
+    oscillator.connect(gain).connect(masterGain);
+    oscillator.start(start);
+    oscillator.stop(start + duration);
   } catch (_) {}
+}
+
+function playEffect(type) {
+  if (type === "printer") {
+    [0, .09, .18, .27, .36].forEach(delay => tone(150 + Math.random() * 80, .045, "square", .025, delay));
+  } else if (type === "conveyor") {
+    tone(82, .85, "sawtooth", .025);
+    tone(121, .7, "triangle", .018, .08);
+  } else if (type === "stamp") {
+    tone(115, .07, "square", .09);
+    tone(65, .1, "sine", .06, .04);
+  } else if (type === "alert") {
+    tone(180, .15, "square", .05);
+    tone(140, .22, "square", .045, .18);
+  }
+}
+
+function announce(text) {
+  if (!state.sound || !text || !("speechSynthesis" in window)) return;
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "cs-CZ";
+  utterance.rate = .9;
+  utterance.pitch = .92;
+  utterance.volume = .48;
+  window.speechSynthesis.speak(utterance);
+}
+
+function buildHallTraffic() {
+  ui.hallTraffic.innerHTML = "";
+  [0, 1, 2, 3].forEach((_, index) => {
+    const person = document.createElement("div");
+    person.className = `character passerby sprite-${(index * 3 + 4) % 12}${index % 2 ? " reverse" : ""}`;
+    person.style.top = `${28 + index * 13}%`;
+    person.style.setProperty("--walk-time", `${12 + index * 2.4}s`);
+    person.style.setProperty("--walk-delay", `${-index * 3.7}s`);
+    ui.hallTraffic.appendChild(person);
+  });
+}
+
+function getCaseProfile(current) {
+  const limit = current.travelClass === "ECONOMY" ? state.rule.economyLimit : current.bagLimit;
+  let correct = current.correct;
+  let reason = current.reason;
+  if (current.travelClass === "ECONOMY" && current.bagWeight > limit && correct === "approve") {
+    correct = "fee";
+    reason = `Dnešní snížený limit je ${limit} kg. Zavazadlo má ${current.bagWeight.toFixed(1).replace(".", ",")} kg, proto je nutný doplatek.`;
+  } else if (["overweight", "wedding-dress"].includes(current.id) && current.bagWeight > limit) {
+    const excess = (current.bagWeight - limit).toFixed(1).replace(".", ",");
+    reason = `Zavazadlo překračuje dnešní limit ${limit} kg o ${excess} kg. Je nutné vybrat doplatek.`;
+  }
+  return {
+    correct,
+    reason,
+    limit,
+    requireScan: Boolean(current.scanRequired || state.rule.requireScan || state.caseScanRequired),
+    requireTalk: Boolean(current.suspicious && state.rule.requireSuspiciousTalk)
+  };
+}
+
+function showOperationalMessage(title, text, icon = "!", speech = "") {
+  clearTimeout(state.eventTimer);
+  ui.eventTitle.textContent = title;
+  ui.eventText.textContent = text;
+  ui.eventIcon.textContent = icon;
+  ui.eventBanner.classList.add("show");
+  if (speech) announce(speech);
+  state.eventTimer = setTimeout(() => ui.eventBanner.classList.remove("show"), 4600);
+}
+
+function triggerHallEvent(event) {
+  if (!event) return;
+  if (event.seconds) state.seconds += event.seconds;
+  if (event.nextScanRequired) state.nextScanRequired = true;
+  if (event.scoreBoost) state.scoreBoost = event.scoreBoost;
+  showOperationalMessage(event.title, event.text, event.icon, event.announcement);
+  updateHud();
+}
+
+function answerForQuestion(current, question) {
+  if (question.key === "packed") {
+    return current.suspicious ? "Balil jsem ho… vlastně mi s ním někdo pomáhal. Už si nejsem jistý." : "Zavazadlo jsem balil osobně a měl jsem ho stále u sebe.";
+  }
+  if (question.key === "purpose") return current.interview;
+  if (question.key === "documents") {
+    return current.missingPassport ? "Žádný další originální doklad u sebe nemám." : "Tohle jsou všechny doklady, které mám k cestě připravené.";
+  }
+  return "Nevím, co dalšího bych k tomu měl dodat.";
+}
+
+function renderDialogue(current) {
+  ui.dialogueChoices.innerHTML = "";
+  const dialogue = current.dialogue || DEFAULT_DIALOGUE;
+  dialogue.forEach((item, index) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "dialogue-choice";
+    button.textContent = item.q;
+    button.addEventListener("click", () => askQuestion(index));
+    ui.dialogueChoices.appendChild(button);
+  });
+}
+
+function askQuestion(index) {
+  if (!state.running || state.answered) return;
+  const current = state.cases[state.index];
+  const dialogue = current.dialogue || DEFAULT_DIALOGUE;
+  const item = dialogue[index];
+  if (!item) return;
+  state.questionsAsked.add(index);
+  const response = item.a || answerForQuestion(current, item);
+  ui.interviewText.textContent = `„${response}“`;
+  ui.travelerLine.textContent = response;
+  if (item.reveal) ui.observationText.textContent = item.reveal;
+  const button = ui.dialogueChoices.children[index];
+  if (button) {
+    button.classList.add("asked");
+    button.disabled = true;
+  }
+  ui.talkAlert.textContent = "";
+  tone(420, .06, "triangle", .025);
+}
+
+function travelerReaction(action, correct) {
+  const current = state.cases[state.index];
+  let mood = "angry";
+  let text = "Počkejte… tomu rozhodnutí nerozumím.";
+  if (correct && action === "approve") { mood = "happy"; text = "Děkuji, Natálko! Na shledanou u gatu."; }
+  if (correct && action === "fee") { mood = "worried"; text = "Dobře, doplatek uhradím. Hlavně ať stihnu let."; }
+  if (correct && action === "deny") { mood = "worried"; text = "To snad ne… budu to muset vyřešit u přepážky služeb."; }
+  if (correct && action === "alert") { mood = "shocked"; text = current.id === "coercion" || current.id === "no-passport-coercion" ? "Děkuji… prosím, buďte diskrétní." : "Bezpečnost? To bude určitě nedorozumění!"; }
+  ui.conversation.className = `conversation reaction-${mood}`;
+  ui.currentSprite.classList.add(`react-${mood}`);
+  ui.travelerLine.textContent = text;
+}
+
+function animateService(action, correct) {
+  playEffect(correct ? "stamp" : "alert");
+  if (!correct) return;
+  if (action === "approve" || action === "fee") {
+    ui.ticketPrinter.classList.remove("printing");
+    ui.conveyor.classList.remove("dispatch", "running");
+    void ui.ticketPrinter.offsetWidth;
+    ui.ticketPrinter.classList.add("printing");
+    ui.conveyor.classList.add("dispatch", "running");
+    playEffect("printer");
+    playEffect("conveyor");
+    setTimeout(() => ui.currentSprite.classList.add("depart-approved"), 520);
+  } else if (action === "deny") {
+    setTimeout(() => ui.currentSprite.classList.add("depart-denied"), 520);
+  } else {
+    playEffect("alert");
+  }
 }
 
 function startGame() {
   clearInterval(state.timerId);
   clearTimeout(state.scanTimer);
+  clearTimeout(state.eventTimer);
+  ensureAudio();
+  const soundEnabled = state.sound;
+  const rule = shuffle(SHIFT_RULES)[0];
   const anchors = ["approve", "deny", "fee", "alert"].map(action => shuffle(CASES.filter(item => item.correct === action))[0]);
   const anchorIds = new Set(anchors.map(item => item.id));
-  const chosen = shuffle([...anchors, ...shuffle(CASES.filter(item => !anchorIds.has(item.id))).slice(0, 4)]);
-  state = { ...state, cases: chosen, index: 0, score: 0, strikes: 0, correct: 0, seconds: 240, answered: false, running: true, scanDone: false, timerId: null, scanTimer: null };
+  const combined = shuffle(CASES.filter(item => item.combined && !anchorIds.has(item.id)))[0];
+  if (combined) anchorIds.add(combined.id);
+  const extreme = shuffle(CASES.filter(item => item.extreme && !anchorIds.has(item.id)))[0];
+  if (extreme) anchorIds.add(extreme.id);
+  const featured = [combined, extreme].filter(Boolean);
+  if (rule.requireSuspiciousTalk && ![...anchors, ...featured].some(item => item.suspicious)) {
+    const suspicious = shuffle(CASES.filter(item => item.suspicious && !anchorIds.has(item.id)))[0];
+    if (suspicious) {
+      featured.push(suspicious);
+      anchorIds.add(suspicious.id);
+    }
+  }
+  const chosen = shuffle([...anchors, ...featured, ...shuffle(CASES.filter(item => !anchorIds.has(item.id))).slice(0, 8 - anchors.length - featured.length)]);
+  state = {
+    cases: chosen, index: 0, score: 0, strikes: 0, correct: 0, seconds: 240,
+    answered: false, running: true, scanDone: false, sound: soundEnabled,
+    timerId: null, scanTimer: null, eventTimer: null, caseStartedAt: 0,
+    totalDecisionSeconds: 0, decisions: 0, satisfaction: 100, questionsAsked: new Set(),
+    rule, events: shuffle(HALL_EVENTS).slice(0, 3), nextScanRequired: false,
+    caseScanRequired: false, scoreBoost: 0, caseScoreBoost: 0
+  };
+  ui.ruleBadge.textContent = rule.badge;
+  ui.dailyRule.textContent = rule.text;
   ui.caseTotal.textContent = state.cases.length.toString().padStart(2, "0");
+  ui.eventBanner.classList.remove("show");
   updateHud();
+  buildHallTraffic();
   renderCase();
   if (ui.intro.open) ui.intro.close();
   if (ui.summary.open) ui.summary.close();
   state.timerId = setInterval(tick, 1000);
   tone(520, .12, "triangle");
+  setTimeout(() => announce(`Přepážka B dvanáct je otevřena. Dnešní režim: ${rule.badge.toLowerCase()}.`), 350);
 }
 
 function tick() {
@@ -660,6 +1155,13 @@ function renderCase() {
   clearTimeout(state.scanTimer);
   state.answered = false;
   state.scanDone = false;
+  state.questionsAsked = new Set();
+  state.caseScanRequired = state.nextScanRequired;
+  state.nextScanRequired = false;
+  state.caseScoreBoost = state.scoreBoost;
+  state.scoreBoost = 0;
+  state.caseStartedAt = performance.now();
+  const profile = getCaseProfile(current);
   ui.caseNumber.textContent = String(state.index + 1).padStart(2, "0");
   ui.currentSprite.className = `character current-traveler sprite-${current.sprite}`;
   void ui.currentSprite.offsetWidth;
@@ -667,6 +1169,7 @@ function renderCase() {
   requestAnimationFrame(() => { ui.currentSprite.style.animation = ""; });
   ui.travelerName.textContent = current.name.toUpperCase();
   ui.travelerLine.textContent = current.line;
+  ui.conversation.className = "conversation";
   ui.passportCard.classList.toggle("missing", !!current.missingPassport);
   ui.passportName.textContent = current.name.toUpperCase();
   ui.nationality.textContent = current.nationality;
@@ -679,14 +1182,17 @@ function renderCase() {
   ui.ticketTime.textContent = current.time;
   ui.ticketClass.textContent = current.travelClass;
   ui.bagWeight.textContent = `${current.bagWeight.toFixed(1).replace(".", ",")} kg`;
-  ui.bagLimit.textContent = `${current.bagLimit} kg`;
+  ui.bagLimit.textContent = `${profile.limit} kg`;
   ui.bagScan.textContent = "NEPROVEDENO";
   ui.bagTag.textContent = current.bagTag;
+  ui.bagSymbol.textContent = current.bagSymbol || (current.bagScan === "BEZ NÁLEZU" ? "✓" : "✦");
   ui.scaleWeight.textContent = `${current.bagWeight.toFixed(1)} kg`;
   ui.interviewText.textContent = `„${current.interview}“`;
   ui.observationText.textContent = current.observation;
   ui.monitorStatus.textContent = "KONTROLA DOKLADŮ";
   ui.resultPanel.className = "result-panel";
+  ui.ticketPrinter.classList.remove("printing");
+  ui.conveyor.classList.remove("dispatch", "running");
   ui.scanner.classList.remove("scanned", "scanning");
   ui.scanButton.disabled = false;
   ui.scanButton.textContent = "SPUSTIT RTG KONTROLU";
@@ -695,8 +1201,9 @@ function renderCase() {
   if (current.highlight === "name") { ui.passportName.classList.add("warning-value"); ui.ticketName.classList.add("warning-value"); }
   if (current.highlight === "flight") { ui.ticketFlight.classList.add("warning-value"); ui.ticketDestination.classList.add("warning-value"); }
   ui.docsAlert.textContent = current.riskTab === "docs" ? "•" : "";
-  ui.bagAlert.textContent = current.riskTab === "bag" ? "•" : "";
-  ui.talkAlert.textContent = current.riskTab === "talk" ? "•" : "";
+  ui.bagAlert.textContent = current.riskTab === "bag" || profile.requireScan ? "•" : "";
+  ui.talkAlert.textContent = current.riskTab === "talk" || profile.requireTalk ? "•" : "";
+  renderDialogue(current);
   $$(".action").forEach(button => button.disabled = false);
   switchTab("docs");
   renderQueue();
@@ -729,6 +1236,7 @@ function scanBag() {
     ui.scanButton.textContent = "RTG KONTROLA DOKONČENA";
     const hasFinding = current.bagScan !== "BEZ NÁLEZU";
     ui.monitorStatus.textContent = hasFinding ? "RTG NÁLEZ · PROVĚŘTE" : "ZAVAZADLO V POŘÁDKU";
+    if (current.riskTab !== "bag") ui.bagAlert.textContent = "";
     tone(hasFinding ? 180 : 640, .16, "square");
   }, 680);
 }
@@ -736,14 +1244,33 @@ function scanBag() {
 function decide(action) {
   if (!state.running || state.answered) return;
   const current = state.cases[state.index];
+  const profile = getCaseProfile(current);
+  if (profile.requireScan && !state.scanDone) {
+    switchTab("bag");
+    showOperationalMessage("NEJDŘÍV RTG", "Tento případ nelze uzavřít bez spuštění kontroly zavazadla.", "RTG");
+    ui.scanButton.focus({ preventScroll: true });
+    tone(190, .12, "square", .04);
+    return;
+  }
+  if (profile.requireTalk && state.questionsAsked.size === 0) {
+    switchTab("talk");
+    showOperationalMessage("DOPLŇTE ROZHOVOR", "Podezřelé chování vyžaduje alespoň jednu doplňující otázku.", "?");
+    ui.dialogueChoices.querySelector("button")?.focus({ preventScroll: true });
+    tone(190, .12, "square", .04);
+    return;
+  }
   state.answered = true;
-  const correct = action === current.correct;
+  const elapsed = Math.max(1, Math.round((performance.now() - state.caseStartedAt) / 1000));
+  state.totalDecisionSeconds += elapsed;
+  state.decisions += 1;
+  const correct = action === profile.correct;
   if (correct) {
-    const speedBonus = Math.min(40, Math.max(0, state.seconds - 80));
-    state.score += 100 + speedBonus;
+    const speedBonus = elapsed <= 16 ? 35 : elapsed <= 28 ? 20 : elapsed <= 45 ? 10 : 0;
+    const eventBonus = state.caseScoreBoost || 0;
+    state.score += 100 + speedBonus + eventBonus;
     state.correct += 1;
     ui.resultStamp.textContent = "SPRÁVNĚ";
-    ui.resultTitle.textContent = "+100 bodů · Dobré rozhodnutí";
+    ui.resultTitle.textContent = `+${100 + speedBonus + eventBonus} bodů · ${elapsed} s`;
     ui.resultPanel.className = "result-panel show";
     ui.monitorStatus.textContent = "ROZHODNUTÍ POTVRZENO";
     tone(720, .14, "triangle");
@@ -751,14 +1278,18 @@ function decide(action) {
   } else {
     state.strikes += 1;
     state.score = Math.max(0, state.score - 50);
+    state.satisfaction = Math.max(0, state.satisfaction - 18);
     ui.resultStamp.textContent = "CHYBA";
-    ui.resultTitle.textContent = `Správně bylo: ${actionLabel(current.correct)}`;
+    ui.resultTitle.textContent = `Správně bylo: ${actionLabel(profile.correct)}`;
     ui.resultPanel.className = "result-panel show wrong";
     ui.monitorStatus.textContent = "CHYBNÉ ROZHODNUTÍ";
     tone(145, .28, "sawtooth");
   }
-  ui.resultReason.textContent = current.reason;
+  ui.resultReason.textContent = profile.reason;
   $$(".action").forEach(button => button.disabled = true);
+  $$(".dialogue-choice").forEach(button => button.disabled = true);
+  travelerReaction(action, correct);
+  animateService(action, correct);
   updateHud();
   if (state.strikes >= 3) ui.nextButton.textContent = "UKONČIT SMĚNU";
   else if (state.index === state.cases.length - 1) ui.nextButton.textContent = "UZAVŘÍT LET";
@@ -775,21 +1306,35 @@ function nextCase() {
   if (state.strikes >= 3) return finishGame(false);
   state.index += 1;
   if (state.index >= state.cases.length) return finishGame(false);
+  const eventIndex = [2, 4, 6].indexOf(state.index);
+  if (eventIndex >= 0) triggerHallEvent(state.events[eventIndex]);
   renderCase();
 }
 
 function finishGame(timedOut) {
   state.running = false;
   clearInterval(state.timerId);
+  clearTimeout(state.eventTimer);
+  ui.eventBanner.classList.remove("show");
   const completed = state.index >= state.cases.length - 1 && state.answered && state.strikes < 3 && !timedOut;
   const timeBonus = completed ? state.seconds * 2 : 0;
   state.score += timeBonus;
+  const average = state.decisions ? Math.round(state.totalDecisionSeconds / state.decisions) : 0;
+  const accuracy = state.cases.length ? state.correct / state.cases.length : 0;
+  let grade = "D";
+  if (accuracy === 1 && average <= 25 && completed) grade = "A+";
+  else if (accuracy === 1 && completed) grade = "A";
+  else if (accuracy >= .875 && completed) grade = "B";
+  else if (accuracy >= .7) grade = "C";
   const highScore = Math.max(Number(localStorage.getItem("terminal-please-highscore") || 0), state.score);
   localStorage.setItem("terminal-please-highscore", String(highScore));
   $("#summaryScore").textContent = String(state.score).padStart(4, "0");
   $("#correctSummary").textContent = `${state.correct} / ${state.cases.length}`;
   $("#mistakeSummary").textContent = String(state.strikes);
   $("#timeBonusSummary").textContent = `+${timeBonus}`;
+  ui.gradeSummary.textContent = grade;
+  ui.averageSummary.textContent = `${average} s`;
+  ui.satisfactionSummary.textContent = `${state.satisfaction} %`;
   if (timedOut) {
     $("#summaryLabel").textContent = "ČAS VYPRŠEL";
     $("#summaryTitle").textContent = "PŘEPÁŽKA UZAVŘENA";
@@ -804,6 +1349,7 @@ function finishGame(timedOut) {
     $("#summaryText").textContent = state.correct === state.cases.length ? "Výborná práce. Všichni cestující byli vyřešeni správně a let může bezpečně odletět." : "Let je uzavřen. Většina cestujících je odbavena, ale v hlášení zůstaly chyby k prověření.";
   }
   ui.summary.showModal();
+  announce(`Směna ukončena. Hodnocení ${grade.replace("+", " plus")}.`);
   tone(completed ? 620 : 170, .3, completed ? "triangle" : "sawtooth");
 }
 
@@ -820,6 +1366,8 @@ ui.startButton.addEventListener('click', startGame);
 ui.restartButton.addEventListener('click', startGame);
 ui.soundButton.addEventListener('click', () => {
   state.sound = !state.sound;
+  if (masterGain) masterGain.gain.setTargetAtTime(state.sound ? 1 : 0, audioContext.currentTime, .03);
+  if (!state.sound && "speechSynthesis" in window) window.speechSynthesis.cancel();
   ui.soundButton.classList.toggle('muted', !state.sound);
   ui.soundButton.setAttribute('aria-label', state.sound ? 'Vypnout zvuk' : 'Zapnout zvuk');
   if (state.sound) tone(520, .08, 'triangle');
@@ -832,7 +1380,10 @@ window.addEventListener('keydown', event => {
   if (event.key === 'Enter') nextCase();
 });
 
-window.addEventListener('DOMContentLoaded', showIntro);
+window.addEventListener('DOMContentLoaded', () => {
+  buildHallTraffic();
+  showIntro();
+});
 
 function registerGameTools() {
   const context = document.modelContext;
