@@ -175,7 +175,7 @@ h1 { font-size: clamp(1.1rem, 2vw, 1.7rem); margin: 0; letter-spacing: .08em; }
 .current-traveler { width: 190px; height: 190px; margin: 0 auto; animation: arrive .5s cubic-bezier(.2,.8,.2,1) both; }
 @keyframes arrive { from { transform: translate(-55px, -35px) scale(.8); opacity: 0; } to { transform: none; opacity: 1; } }
 .conversation {
-  position: absolute; left: 55%; top: 4%; min-width: 190px; max-width: 260px; padding: 12px 14px;
+  position: absolute; left: 105%; top: 4%; min-width: 190px; max-width: 260px; padding: 12px 14px;
   background: #f0eadc; color: #132129; box-shadow: var(--shadow); transform: rotate(1deg);
 }
 .conversation::after { content: ""; position: absolute; left: -11px; bottom: 8px; border: 12px solid transparent; border-right-color: #f0eadc; border-left: 0; }
@@ -190,9 +190,14 @@ h1 { font-size: clamp(1.1rem, 2vw, 1.7rem); margin: 0; letter-spacing: .08em; }
 .monitor { position: absolute; left: 30%; bottom: 27%; width: 145px; height: 90px; background: #06161c; border: 8px solid #17282d; box-shadow: 0 12px 22px rgba(0,0,0,.5); transform: rotate(-4deg); display: grid; place-items: center; }
 .monitor span { color: var(--cyan); font-size: .67rem; letter-spacing: .1em; text-align: center; padding: 8px; }
 
-.agent-station { position: absolute; left: 51%; bottom: -1%; z-index: 7; width: 190px; }
-.agent { width: 180px; height: 180px; transform: rotate(180deg); }
-.agent-name { display: block; margin: -22px auto 0; width: max-content; padding: 4px 8px; background: #d9dfe0; color: #13242b; font-size: .64rem; font-weight: 900; transform: rotate(-2deg); }
+.agent-station { position: absolute; left: 50%; bottom: 2.5%; z-index: 7; width: 190px; display: flex; flex-direction: column; align-items: center; }
+.agent {
+  width: 165px; height: 248px;
+  background-image: url("assets/natalka-agent-back.png");
+  background-size: contain; background-position: center; background-repeat: no-repeat;
+  transform: none;
+}
+.agent-name { display: block; margin: -25px auto 0; width: max-content; padding: 4px 8px; background: #d9dfe0; color: #13242b; font-size: .64rem; font-weight: 900; transform: rotate(-2deg); }
 
 .workdesk {
   position: relative;
@@ -323,7 +328,7 @@ dialog::backdrop { background: rgba(0,8,12,.82); backdrop-filter: blur(7px); }
   .topbar { grid-template-columns: 1fr auto; }
   .flight-board { display: none; }
   .game-stage { grid-template-columns: minmax(400px, .9fr) minmax(470px, 1.1fr); }
-  .conversation { left: 40%; top: -3%; }
+  .conversation { left: 100%; top: -3%; }
   .agent-station { left: 43%; }
 }
 
@@ -340,10 +345,10 @@ dialog::backdrop { background: rgba(0,8,12,.82); backdrop-filter: blur(7px); }
   .queue-person { width: 76px; height: 76px; }
   .current-zone { left: 29%; top: 15%; width: 35%; }
   .current-traveler { width: 145px; height: 145px; }
-  .conversation { left: 62%; top: 0; min-width: 155px; max-width: 190px; }
+  .conversation { left: 96%; top: 0; min-width: 155px; max-width: 190px; }
   .counter { left: 30%; bottom: 10%; height: 125px; }
-  .agent-station { left: 48%; bottom: -5%; width: 125px; }
-  .agent { width: 125px; height: 125px; }
+  .agent-station { left: 48%; bottom: 1.5%; width: 140px; }
+  .agent { width: 112px; height: 168px; }
   .workdesk { border-left: 0; border-top: 5px solid #030b0f; min-height: 690px; }
   .game-footer { display: none; }
 }
@@ -357,7 +362,7 @@ dialog::backdrop { background: rgba(0,8,12,.82); backdrop-filter: blur(7px); }
   .queue-person { width: 62px; height: 62px; }
   .current-zone { left: 24%; width: 38%; }
   .current-traveler { width: 120px; height: 120px; }
-  .conversation { left: 52%; min-width: 132px; max-width: 160px; padding: 9px; }
+  .conversation { left: 92%; min-width: 132px; max-width: 160px; padding: 9px; }
   .conversation p { font-size: .73rem; }
   .counter { left: 22%; right: 2%; height: 110px; }
   .monitor { display: none; }

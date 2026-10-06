@@ -135,7 +135,7 @@ const CASES = [
     bagTag: "PRG-7742",
     line: "To pouzdro? Jen vybavení ke koncertu.",
     interview: "Kufr balil kolega. Přesně nevím, co dal do boční kapsy.",
-    observation: "RTG označil neznámou tlakovou nádobu propojenou kabeláží.",
+    observation: "Tvar pouzdra je neobvyklý. Obsah musí nejprve odhalit RTG kontrola.",
     correct: "alert",
     reason: "Podezřelý obsah zavazadla musí prověřit letištní bezpečnost.",
     scanRequired: true,
@@ -659,7 +659,7 @@ function renderCase() {
   if (!current) return finishGame(false);
   clearTimeout(state.scanTimer);
   state.answered = false;
-  state.scanDone = !current.scanRequired;
+  state.scanDone = false;
   ui.caseNumber.textContent = String(state.index + 1).padStart(2, "0");
   ui.currentSprite.className = `character current-traveler sprite-${current.sprite}`;
   void ui.currentSprite.offsetWidth;
@@ -680,7 +680,7 @@ function renderCase() {
   ui.ticketClass.textContent = current.travelClass;
   ui.bagWeight.textContent = `${current.bagWeight.toFixed(1).replace(".", ",")} kg`;
   ui.bagLimit.textContent = `${current.bagLimit} kg`;
-  ui.bagScan.textContent = current.scanRequired && !state.scanDone ? "NEPROVEDENO" : current.bagScan;
+  ui.bagScan.textContent = "NEPROVEDENO";
   ui.bagTag.textContent = current.bagTag;
   ui.scaleWeight.textContent = `${current.bagWeight.toFixed(1)} kg`;
   ui.interviewText.textContent = `„${current.interview}“`;
@@ -727,8 +727,9 @@ function scanBag() {
     ui.scanner.classList.add("scanned");
     ui.bagScan.textContent = current.bagScan;
     ui.scanButton.textContent = "RTG KONTROLA DOKONČENA";
-    ui.monitorStatus.textContent = current.scanRequired ? "NÁLEZ · VOLEJTE OSTRAHU" : "ZAVAZADLO V POŘÁDKU";
-    tone(current.scanRequired ? 180 : 640, .16, "square");
+    const hasFinding = current.bagScan !== "BEZ NÁLEZU";
+    ui.monitorStatus.textContent = hasFinding ? "RTG NÁLEZ · PROVĚŘTE" : "ZAVAZADLO V POŘÁDKU";
+    tone(hasFinding ? 180 : 640, .16, "square");
   }, 680);
 }
 
