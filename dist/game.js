@@ -941,17 +941,6 @@ function playEffect(type) {
   }
 }
 
-function announce(text) {
-  if (!state.sound || !text || !("speechSynthesis" in window)) return;
-  window.speechSynthesis.cancel();
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = "cs-CZ";
-  utterance.rate = .9;
-  utterance.pitch = .92;
-  utterance.volume = .48;
-  window.speechSynthesis.speak(utterance);
-}
-
 function buildHallTraffic() {
   ui.hallTraffic.innerHTML = "";
   [0, 1, 2, 3].forEach((_, index) => {
@@ -984,13 +973,12 @@ function getCaseProfile(current) {
   };
 }
 
-function showOperationalMessage(title, text, icon = "!", speech = "") {
+function showOperationalMessage(title, text, icon = "!") {
   clearTimeout(state.eventTimer);
   ui.eventTitle.textContent = title;
   ui.eventText.textContent = text;
   ui.eventIcon.textContent = icon;
   ui.eventBanner.classList.add("show");
-  if (speech) announce(speech);
   state.eventTimer = setTimeout(() => ui.eventBanner.classList.remove("show"), 4600);
 }
 
@@ -999,7 +987,7 @@ function triggerHallEvent(event) {
   if (event.seconds) state.seconds += event.seconds;
   if (event.nextScanRequired) state.nextScanRequired = true;
   if (event.scoreBoost) state.scoreBoost = event.scoreBoost;
-  showOperationalMessage(event.title, event.text, event.icon, event.announcement);
+  showOperationalMessage(event.title, event.text, event.icon);
   updateHud();
 }
 
@@ -1120,7 +1108,6 @@ function startGame() {
   if (ui.summary.open) ui.summary.close();
   state.timerId = setInterval(tick, 1000);
   tone(520, .12, "triangle");
-  setTimeout(() => announce(`Přepážka B dvanáct je otevřena. Dnešní režim: ${rule.badge.toLowerCase()}.`), 350);
 }
 
 function tick() {
@@ -1349,7 +1336,6 @@ function finishGame(timedOut) {
     $("#summaryText").textContent = state.correct === state.cases.length ? "Výborná práce. Všichni cestující byli vyřešeni správně a let může bezpečně odletět." : "Let je uzavřen. Většina cestujících je odbavena, ale v hlášení zůstaly chyby k prověření.";
   }
   ui.summary.showModal();
-  announce(`Směna ukončena. Hodnocení ${grade.replace("+", " plus")}.`);
   tone(completed ? 620 : 170, .3, completed ? "triangle" : "sawtooth");
 }
 
@@ -1367,7 +1353,6 @@ ui.restartButton.addEventListener('click', startGame);
 ui.soundButton.addEventListener('click', () => {
   state.sound = !state.sound;
   if (masterGain) masterGain.gain.setTargetAtTime(state.sound ? 1 : 0, audioContext.currentTime, .03);
-  if (!state.sound && "speechSynthesis" in window) window.speechSynthesis.cancel();
   ui.soundButton.classList.toggle('muted', !state.sound);
   ui.soundButton.setAttribute('aria-label', state.sound ? 'Vypnout zvuk' : 'Zapnout zvuk');
   if (state.sound) tone(520, .08, 'triangle');
