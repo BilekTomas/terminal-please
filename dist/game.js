@@ -256,6 +256,307 @@ const CASES = [
     correct: "approve",
     reason: "Vše je v pořádku. Zavazadlo je pod limitem 23 kg.",
     riskTab: null
+  },
+  {
+    id: "business-valid",
+    name: "Irena Malá",
+    sprite: 4,
+    nationality: "ČESKÁ REPUBLIKA",
+    passportNumber: "CZ7703142",
+    passportExpiry: "16. 05. 2032",
+    ticketName: "IRENA MALÁ",
+    flight: "OK 761",
+    destination: "PARIS",
+    time: "18:45",
+    travelClass: "BUSINESS",
+    bagWeight: 30.6,
+    bagLimit: 32,
+    bagScan: "BEZ NÁLEZU",
+    bagTag: "PRG-7014",
+    line: "Mám business tarif, limit by měl být třicet dva kilo.",
+    interview: "Letím přímo na konferenci a zavazadlo jsem balila sama.",
+    observation: "Business tarif má zvýšený limit 32 kg. Všechny údaje souhlasí.",
+    correct: "approve",
+    reason: "Zavazadlo je pod limitem business tarifu a doklady jsou platné.",
+    riskTab: null
+  },
+  {
+    id: "damaged-passport",
+    name: "Tomasz Nowak",
+    sprite: 1,
+    nationality: "POLSKO",
+    passportNumber: "PL9982014",
+    passportExpiry: "08. 04. 2030",
+    ticketName: "TOMASZ NOWAK",
+    flight: "OK 761",
+    destination: "PARIS",
+    time: "18:45",
+    travelClass: "ECONOMY",
+    bagWeight: 13.7,
+    bagLimit: 23,
+    bagScan: "BEZ NÁLEZU",
+    bagTag: "PRG-1622",
+    line: "Pas mi trochu zmokl, ale údaje jsou přece vidět.",
+    interview: "Čip už nejde načíst a stránka s fotografií se odlepuje.",
+    observation: "Poškozený doklad nelze strojově ověřit; ochranné prvky jsou narušené.",
+    correct: "deny",
+    reason: "Výrazně poškozený a nečitelný pas nelze přijmout k odbavení.",
+    riskTab: "docs"
+  },
+  {
+    id: "short-validity",
+    name: "Layla Haddad",
+    sprite: 2,
+    nationality: "JORDÁNSKO",
+    passportNumber: "JX4401872",
+    passportExpiry: "20. 11. 2026",
+    ticketName: "LAYLA HADDAD",
+    flight: "OK 761",
+    destination: "PARIS",
+    time: "18:45",
+    travelClass: "ECONOMY",
+    bagWeight: 19.0,
+    bagLimit: 23,
+    bagScan: "BEZ NÁLEZU",
+    bagTag: "PRG-4851",
+    line: "Pas je ještě platný, tak by neměl být problém.",
+    interview: "Vrátit se mám za dva týdny. Nový pas jsem nestihla vyřídit.",
+    observation: "Pas nesplňuje dnešní pravidlo minimální tříměsíční platnosti po návratu.",
+    correct: "deny",
+    reason: "Platnost pasu je kratší než požadované tři měsíce po návratu.",
+    highlight: "expiry",
+    riskTab: "docs"
+  },
+  {
+    id: "wrong-date",
+    name: "Erik Svensson",
+    sprite: 7,
+    nationality: "ŠVÉDSKO",
+    passportNumber: "SE3034871",
+    passportExpiry: "02. 02. 2034",
+    ticketName: "ERIK SVENSSON",
+    flight: "OK 761",
+    destination: "PARIS",
+    time: "18:45 · 16. 10.",
+    travelClass: "ECONOMY",
+    bagWeight: 10.5,
+    bagLimit: 23,
+    bagScan: "BEZ NÁLEZU",
+    bagTag: "PRG-1700",
+    line: "Prosím? Dnes není šestnáctého?",
+    interview: "Cestující se spletl o jeden den a nemá rezervaci na dnešní let.",
+    observation: "Letenka je platná až zítra. Dnešní let je téměř plný.",
+    correct: "deny",
+    reason: "Letenka platí až na následující den, nikoli na dnešní směnu.",
+    riskTab: "docs"
+  },
+  {
+    id: "extra-bag",
+    name: "Chloé Martin",
+    sprite: 8,
+    nationality: "FRANCIE",
+    passportNumber: "17FR54093",
+    passportExpiry: "01. 06. 2031",
+    ticketName: "CHLOÉ MARTIN",
+    flight: "OK 761",
+    destination: "PARIS",
+    time: "18:45",
+    travelClass: "ECONOMY",
+    bagWeight: 17.8,
+    bagLimit: 23,
+    bagScan: "BEZ NÁLEZU",
+    bagTag: "PRG-4409",
+    line: "Mám dva kufry, každý je lehký. To se sčítá, ne?",
+    interview: "Tarif zahrnuje jeden kus. Druhý kufr nebyl přikoupen.",
+    observation: "Hmotnost je v limitu, ale cestující má jeden neuhrazený kus navíc.",
+    correct: "fee",
+    reason: "Za druhé odbavené zavazadlo je nutné vybrat doplatek.",
+    riskTab: "bag"
+  },
+  {
+    id: "sports-gear",
+    name: "Jan Keller",
+    sprite: 7,
+    nationality: "NĚMECKO",
+    passportNumber: "C7P602441",
+    passportExpiry: "24. 03. 2031",
+    ticketName: "JAN KELLER",
+    flight: "OK 761",
+    destination: "PARIS",
+    time: "18:45",
+    travelClass: "ECONOMY",
+    bagWeight: 15.2,
+    bagLimit: 23,
+    bagScan: "SPORTOVNÍ VYBAVENÍ",
+    bagTag: "PRG-6612",
+    line: "Lyže jsou lehké. Určitě se počítají jako normální kufr.",
+    interview: "Sportovní vybavení nemá přikoupené a překračuje běžné rozměry.",
+    observation: "Nadrozměrné sportovní vybavení vyžaduje zvláštní odbavení a úhradu.",
+    correct: "fee",
+    reason: "Je třeba vybrat poplatek za nadrozměrné sportovní vybavení.",
+    riskTab: "bag"
+  },
+  {
+    id: "pet-fee",
+    name: "Petra Horská",
+    sprite: 5,
+    nationality: "ČESKÁ REPUBLIKA",
+    passportNumber: "CZ1835007",
+    passportExpiry: "12. 01. 2033",
+    ticketName: "PETRA HORSKÁ",
+    flight: "OK 761",
+    destination: "PARIS",
+    time: "18:45",
+    travelClass: "ECONOMY",
+    bagWeight: 12.4,
+    bagLimit: 23,
+    bagScan: "BEZ NÁLEZU",
+    bagTag: "PRG-3815",
+    line: "Kočka má čip i evropský pas, jen jsem ji nepřidala k rezervaci.",
+    interview: "Doklady zvířete jsou platné a přepravka splňuje rozměry kabiny.",
+    observation: "Přeprava zvířete je možná, ale služba nebyla uhrazena.",
+    correct: "fee",
+    reason: "Doklady zvířete jsou v pořádku, zbývá doplatit přepravu v kabině.",
+    riskTab: "talk"
+  },
+  {
+    id: "lithium-battery",
+    name: "Oliver Reed",
+    sprite: 9,
+    nationality: "SPOJENÉ KRÁLOVSTVÍ",
+    passportNumber: "561907224",
+    passportExpiry: "29. 08. 2030",
+    ticketName: "OLIVER REED",
+    flight: "OK 761",
+    destination: "PARIS",
+    time: "18:45",
+    travelClass: "ECONOMY",
+    bagWeight: 21.6,
+    bagLimit: 23,
+    bagScan: "VELKÁ LITHIOVÁ BATERIE",
+    bagTag: "PRG-8180",
+    line: "V kufru mám jen techniku na natáčení.",
+    interview: "Cestující potvrzuje, že v odbaveném kufru nechal velkou náhradní baterii.",
+    observation: "RTG musí ověřit baterii, která nesmí zůstat v odbaveném zavazadle.",
+    correct: "alert",
+    reason: "Nebezpečnou baterii musí před odbavením řešit bezpečnostní pracovník.",
+    scanRequired: true,
+    riskTab: "bag"
+  },
+  {
+    id: "stolen-passport",
+    name: "Nina Petrović",
+    sprite: 4,
+    nationality: "CHORVATSKO",
+    passportNumber: "HR4400219",
+    passportExpiry: "18. 10. 2032",
+    ticketName: "NINA PETROVIĆ",
+    flight: "OK 761",
+    destination: "PARIS",
+    time: "18:45",
+    travelClass: "ECONOMY",
+    bagWeight: 20.0,
+    bagLimit: 23,
+    bagScan: "BEZ NÁLEZU",
+    bagTag: "PRG-3320",
+    line: "To musí být chyba systému. Ten pas je můj.",
+    interview: "Číslo dokladu je v databázi vedeno jako odcizené před dvěma měsíci.",
+    observation: "Fotografie odpovídá, ale hlášení o odcizení vyžaduje ověření policií.",
+    correct: "alert",
+    reason: "Doklad hlášený jako odcizený musí prověřit cizinecká policie.",
+    riskTab: "docs"
+  },
+  {
+    id: "duplicate-pass",
+    name: "Leo Bernard",
+    sprite: 6,
+    nationality: "FRANCIE",
+    passportNumber: "21FR88902",
+    passportExpiry: "06. 02. 2030",
+    ticketName: "LEO BERNARD",
+    flight: "OK 761",
+    destination: "PARIS",
+    time: "18:45",
+    travelClass: "ECONOMY",
+    bagWeight: 9.2,
+    bagLimit: 23,
+    bagScan: "BEZ NÁLEZU",
+    bagTag: "PRG-1904",
+    line: "Systém tvrdí, že už jsem odbavený, ale u přepážky jsem poprvé.",
+    interview: "Stejná palubní vstupenka byla vydána před deseti minutami jiné osobě.",
+    observation: "Možné zneužití rezervace nebo duplicita identity. Sedadlo je již obsazené.",
+    correct: "alert",
+    reason: "Duplicitní odbavení vyžaduje okamžité ověření supervizorem.",
+    riskTab: "docs"
+  },
+  {
+    id: "coercion",
+    name: "Sara Mendez",
+    sprite: 2,
+    nationality: "ŠPANĚLSKO",
+    passportNumber: "PAE440918",
+    passportExpiry: "27. 12. 2031",
+    ticketName: "SARA MENDEZ",
+    flight: "OK 761",
+    destination: "PARIS",
+    time: "18:45",
+    travelClass: "ECONOMY",
+    bagWeight: 8.4,
+    bagLimit: 23,
+    bagScan: "BEZ NÁLEZU",
+    bagTag: "PRG-7078",
+    line: "Já… nevím, kdo kupoval letenku. Ten muž za mnou má můj telefon.",
+    interview: "Cestující šeptem žádá, abyste muže za ní neupozorňovala.",
+    observation: "Známky nátlaku a strachu. Použijte diskrétní bezpečnostní postup.",
+    correct: "alert",
+    reason: "Podezření na nátlak vyžaduje diskrétní přivolání bezpečnostního týmu.",
+    riskTab: "talk"
+  },
+  {
+    id: "exact-limit",
+    name: "Boris Nikolić",
+    sprite: 3,
+    nationality: "SRBSKO",
+    passportNumber: "SRB319800",
+    passportExpiry: "30. 09. 2030",
+    ticketName: "BORIS NIKOLIĆ",
+    flight: "OK 761",
+    destination: "PARIS",
+    time: "18:45",
+    travelClass: "ECONOMY",
+    bagWeight: 23.0,
+    bagLimit: 23,
+    bagScan: "BEZ NÁLEZU",
+    bagTag: "PRG-5528",
+    line: "Přesně dvacet tři. Ani gram navíc.",
+    interview: "Cestující má platné dokumenty a jeden standardní kus zavazadla.",
+    observation: "Hmotnost přesně odpovídá povolenému limitu.",
+    correct: "approve",
+    reason: "Přesných 23 kg je stále v limitu. Cestující může být odbaven.",
+    riskTab: null
+  },
+  {
+    id: "prepaid-instrument",
+    name: "Émile Roux",
+    sprite: 6,
+    nationality: "FRANCIE",
+    passportNumber: "18FR35018",
+    passportExpiry: "05. 05. 2032",
+    ticketName: "ÉMILE ROUX",
+    flight: "OK 761",
+    destination: "PARIS",
+    time: "18:45",
+    travelClass: "ECONOMY",
+    bagWeight: 20.4,
+    bagLimit: 23,
+    bagScan: "HUDEBNÍ NÁSTROJ · UHRAZENO",
+    bagTag: "PRG-9093",
+    line: "Kytaru mám nahlášenou a speciální přepravu jsem zaplatil.",
+    interview: "Rezervace obsahuje uhrazený nadrozměrný hudební nástroj.",
+    observation: "Pouzdro je řádně označené a služba je potvrzena v systému.",
+    correct: "approve",
+    reason: "Speciální přeprava je uhrazena a všechny doklady jsou v pořádku.",
+    riskTab: null
   }
 ];
 
@@ -279,7 +580,7 @@ const ui = {
   docsAlert: $("#docsAlert"), bagAlert: $("#bagAlert"), talkAlert: $("#talkAlert")
 };
 
-let state = { cases: [], index: 0, score: 0, strikes: 0, correct: 0, seconds: 240, answered: false, running: false, scanDone: false, sound: true, timerId: null };
+let state = { cases: [], index: 0, score: 0, strikes: 0, correct: 0, seconds: 240, answered: false, running: false, scanDone: false, sound: true, timerId: null, scanTimer: null };
 
 function shuffle(items) {
   const copy = [...items];
@@ -313,9 +614,11 @@ function tone(frequency, duration = .08, type = "sine") {
 
 function startGame() {
   clearInterval(state.timerId);
-  const required = ["routine", "missing-passport", "expired", "overweight", "name-mismatch", "prohibited-item", "wrong-flight", "medical"];
-  const chosen = shuffle(CASES.filter(item => required.includes(item.id)));
-  state = { ...state, cases: chosen, index: 0, score: 0, strikes: 0, correct: 0, seconds: 240, answered: false, running: true, scanDone: false, timerId: null };
+  clearTimeout(state.scanTimer);
+  const anchors = ["approve", "deny", "fee", "alert"].map(action => shuffle(CASES.filter(item => item.correct === action))[0]);
+  const anchorIds = new Set(anchors.map(item => item.id));
+  const chosen = shuffle([...anchors, ...shuffle(CASES.filter(item => !anchorIds.has(item.id))).slice(0, 4)]);
+  state = { ...state, cases: chosen, index: 0, score: 0, strikes: 0, correct: 0, seconds: 240, answered: false, running: true, scanDone: false, timerId: null, scanTimer: null };
   ui.caseTotal.textContent = state.cases.length.toString().padStart(2, "0");
   updateHud();
   renderCase();
@@ -354,6 +657,7 @@ function renderQueue() {
 function renderCase() {
   const current = state.cases[state.index];
   if (!current) return finishGame(false);
+  clearTimeout(state.scanTimer);
   state.answered = false;
   state.scanDone = !current.scanRequired;
   ui.caseNumber.textContent = String(state.index + 1).padStart(2, "0");
@@ -383,7 +687,7 @@ function renderCase() {
   ui.observationText.textContent = current.observation;
   ui.monitorStatus.textContent = "KONTROLA DOKLADŮ";
   ui.resultPanel.className = "result-panel";
-  ui.scanner.classList.remove("scanned");
+  ui.scanner.classList.remove("scanned", "scanning");
   ui.scanButton.disabled = false;
   ui.scanButton.textContent = "SPUSTIT RTG KONTROLU";
   [ui.passportExpiry, ui.passportName, ui.ticketName, ui.ticketFlight, ui.ticketDestination].forEach(node => node.classList.remove("warning-value"));
@@ -406,13 +710,26 @@ function switchTab(tabName) {
 function scanBag() {
   if (!state.running || state.answered) return;
   const current = state.cases[state.index];
-  state.scanDone = true;
-  ui.scanner.classList.add("scanned");
-  ui.bagScan.textContent = current.bagScan;
-  ui.scanButton.textContent = "RTG KONTROLA DOKONČENA";
+  const scannedCase = state.index;
+  state.scanDone = false;
+  ui.scanner.classList.remove("scanned");
+  ui.scanner.classList.add("scanning");
+  ui.bagScan.textContent = "SKENUJI…";
+  ui.scanButton.textContent = "VŽŽUUM… KONTROLUJI";
   ui.scanButton.disabled = true;
-  ui.monitorStatus.textContent = current.scanRequired ? "NÁLEZ · VOLEJTE OSTRAHU" : "ZAVAZADLO V POŘÁDKU";
-  tone(current.scanRequired ? 180 : 640, .16, "square");
+  ui.monitorStatus.textContent = "RTG · VŽŽUUM";
+  tone(210, .34, "sawtooth");
+  setTimeout(() => tone(720, .18, "triangle"), 260);
+  state.scanTimer = setTimeout(() => {
+    if (!state.running || state.index !== scannedCase) return;
+    state.scanDone = true;
+    ui.scanner.classList.remove("scanning");
+    ui.scanner.classList.add("scanned");
+    ui.bagScan.textContent = current.bagScan;
+    ui.scanButton.textContent = "RTG KONTROLA DOKONČENA";
+    ui.monitorStatus.textContent = current.scanRequired ? "NÁLEZ · VOLEJTE OSTRAHU" : "ZAVAZADLO V POŘÁDKU";
+    tone(current.scanRequired ? 180 : 640, .16, "square");
+  }, 680);
 }
 
 function decide(action) {

@@ -115,6 +115,13 @@ h1 { font-size: clamp(1.1rem, 2vw, 1.7rem); margin: 0; letter-spacing: .08em; }
 .floor-line { position: absolute; border: 2px solid rgba(86,214,209,.15); }
 .line-a { width: 310px; height: 310px; border-radius: 50%; left: -150px; top: 120px; }
 .line-b { width: 420px; height: 420px; border-radius: 50%; left: -210px; top: 66px; }
+.hall-board {
+  position: absolute; z-index: 3; top: 18px; left: 30%; width: 39%; padding: 8px 12px;
+  display: grid; gap: 4px; background: #07171d; border: 1px solid rgba(86,214,209,.28);
+  box-shadow: 0 10px 25px rgba(0,0,0,.24); font-family: Consolas, monospace;
+}
+.hall-board span { display: grid; grid-template-columns: 48px 1fr auto; gap: 8px; color: #a6b9be; font-size: .62rem; }
+.hall-board b { color: var(--yellow); } .hall-board i { color: var(--cyan); font-style: normal; }
 
 .character {
   background-image: url("assets/travelers.png");
@@ -135,20 +142,34 @@ h1 { font-size: clamp(1.1rem, 2vw, 1.7rem); margin: 0; letter-spacing: .08em; }
 .sprite-10 { background-position: 66.666% 100%; }
 .sprite-11 { background-position: 100% 100%; }
 
-.queue-lane { position: absolute; left: 5%; top: 14%; width: 32%; height: 73%; z-index: 2; }
-.belt { position: absolute; height: 66%; width: 48%; border-inline: 5px solid #52636a; border-radius: 15px; }
-.belt::before, .belt::after { content: ""; position: absolute; width: 13px; height: 13px; border-radius: 50%; background: #8c989b; border: 3px solid #273940; }
-.belt::before { left: -9px; top: -6px; } .belt::after { right: -9px; bottom: -6px; }
-.belt-1 { left: 3%; top: 2%; transform: rotate(-6deg); }
-.belt-2 { right: 4%; top: 17%; transform: rotate(7deg); }
-.belt-3 { left: 9%; bottom: -4%; height: 42%; transform: rotate(-6deg); }
-.queue-label { position: absolute; bottom: -22px; left: 26%; color: rgba(255,255,255,.35); font-size: .72rem; letter-spacing: .2em; }
-.queue-person { position: absolute; width: 105px; height: 105px; transition: transform .45s ease, opacity .3s ease; animation: queue-idle 2.8s ease-in-out infinite alternate; }
-.queue-person:nth-child(1) { right: 0; bottom: 3%; }
-.queue-person:nth-child(2) { left: 0; bottom: 21%; animation-delay: -.7s; }
-.queue-person:nth-child(3) { right: 4%; bottom: 42%; animation-delay: -1.2s; }
-.queue-person:nth-child(4) { left: 0; top: 10%; animation-delay: -1.8s; }
+.queue-lane {
+  position: absolute; left: 5%; top: 13%; width: 24%; height: 43%; z-index: 2;
+  border-block: 1px dashed rgba(242,193,78,.18); background: rgba(4,18,24,.14);
+}
+.belt { position: absolute; top: 7%; bottom: 7%; width: 4px; background: #52636a; box-shadow: 0 0 0 1px rgba(0,0,0,.35); }
+.belt::before, .belt::after { content: ""; position: absolute; left: 50%; width: 13px; height: 13px; border-radius: 50%; background: #8c989b; border: 3px solid #273940; transform: translateX(-50%); }
+.belt::before { top: -7px; } .belt::after { bottom: -7px; }
+.belt-1 { left: 8%; }
+.belt-2 { right: 8%; }
+.belt-3 { top: auto; bottom: -3px; left: 50%; right: -65%; width: auto; height: 4px; background: #52636a; }
+.belt-3::before { left: 0; top: 50%; transform: translate(-50%,-50%); }
+.belt-3::after { left: auto; right: -7px; top: 50%; bottom: auto; transform: translateY(-50%); }
+.queue-entry, .queue-label { position: absolute; color: rgba(255,255,255,.42); font-size: .62rem; letter-spacing: .14em; white-space: nowrap; }
+.queue-entry { left: 50%; top: -21px; transform: translateX(-50%); }
+.queue-label { left: 52%; bottom: -24px; color: rgba(242,193,78,.65); }
+.queue-person { position: absolute; left: 50%; width: 90px; height: 90px; margin-left: -45px; transition: transform .45s ease, opacity .3s ease; animation: queue-idle 2.8s ease-in-out infinite alternate; }
+.queue-person:nth-child(1) { bottom: -5%; }
+.queue-person:nth-child(2) { bottom: 20%; animation-delay: -.7s; }
+.queue-person:nth-child(3) { bottom: 45%; animation-delay: -1.2s; }
+.queue-person:nth-child(4) { bottom: 70%; animation-delay: -1.8s; }
 @keyframes queue-idle { to { transform: translateY(-5px); } }
+
+.waiting-area { position: absolute; left: 4%; bottom: 9%; z-index: 2; width: 25%; color: rgba(255,255,255,.28); }
+.waiting-area > span { display: block; margin-bottom: 8px; font-size: .62rem; letter-spacing: .16em; }
+.seat-row { display: flex; gap: 7px; margin-top: 7px; }
+.seat-row i { display: block; flex: 1; height: 28px; background: linear-gradient(180deg,#31515b,#172f38); border: 2px solid #0a1a20; box-shadow: inset 0 -5px rgba(0,0,0,.16); }
+.floor-wayfinding { position: absolute; z-index: 1; right: 4%; top: 17%; display: flex; align-items: baseline; gap: 8px; color: rgba(255,255,255,.1); transform: rotate(90deg); }
+.floor-wayfinding b { font-size: 4.5rem; } .floor-wayfinding span { font-size: 1.1rem; letter-spacing: .18em; }
 
 .current-zone { position: absolute; left: 38%; top: 17%; width: 26%; height: 42%; z-index: 5; }
 .current-traveler { width: 190px; height: 190px; margin: 0 auto; animation: arrive .5s cubic-bezier(.2,.8,.2,1) both; }
@@ -170,7 +191,7 @@ h1 { font-size: clamp(1.1rem, 2vw, 1.7rem); margin: 0; letter-spacing: .08em; }
 .monitor span { color: var(--cyan); font-size: .67rem; letter-spacing: .1em; text-align: center; padding: 8px; }
 
 .agent-station { position: absolute; left: 51%; bottom: -1%; z-index: 7; width: 190px; }
-.agent { width: 180px; height: 180px; }
+.agent { width: 180px; height: 180px; transform: rotate(180deg); }
 .agent-name { display: block; margin: -22px auto 0; width: max-content; padding: 4px 8px; background: #d9dfe0; color: #13242b; font-size: .64rem; font-weight: 900; transform: rotate(-2deg); }
 
 .workdesk {
@@ -225,11 +246,15 @@ dd { margin: 0; font-size: .76rem; font-weight: 800; word-break: break-word; }
 
 .scanner-screen { position: relative; min-height: 230px; overflow: hidden; display: grid; place-items: center; background: #071115; border: 9px solid #21343a; box-shadow: inset 0 0 45px #000; color: var(--cyan); }
 .scanner-screen::before { content: ""; position: absolute; inset: 13% 22%; border: 8px solid rgba(86,214,209,.38); border-radius: 12px; transform: rotate(2deg); }
+.scanner-screen::after { content: ""; position: absolute; z-index: 4; top: 0; bottom: 0; left: -28%; width: 26%; opacity: 0; background: linear-gradient(90deg, transparent, rgba(163,241,232,.95), rgba(86,214,209,.24), transparent); filter: blur(2px); }
 .scan-lines { position: absolute; inset: 0; opacity: .22; background: repeating-linear-gradient(0deg, transparent 0 8px, var(--cyan) 9px); }
 .bag-shape { width: 140px; height: 98px; display: grid; place-items: center; border: 3px solid rgba(242,193,78,.8); color: var(--red); font-size: 2.5rem; opacity: .3; }
 .scanner-screen.scanned .bag-shape { opacity: 1; }
-.scanner-screen.scanned .scan-lines { animation: scan 1.4s linear infinite; }
-@keyframes scan { to { transform: translateY(18px); } }
+.scanner-screen.scanning::after { opacity: 1; animation: xray-whoosh .68s cubic-bezier(.3,.05,.45,1) forwards; }
+.scanner-screen.scanning .bag-shape { animation: xray-pulse .68s ease; }
+.scanner-screen.scanned .scan-lines { opacity: .34; }
+@keyframes xray-whoosh { 0% { left: -28%; } 100% { left: 108%; } }
+@keyframes xray-pulse { 0%,100% { filter: brightness(1); } 45% { filter: brightness(2.3); } }
 .scanner-screen p { position: absolute; bottom: 7px; left: 12px; margin: 0; font-family: Consolas, monospace; font-size: .68rem; letter-spacing: .08em; }
 .bag-facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; }
 .bag-facts div { padding: 11px; background: #102630; border: 1px solid var(--line); }
@@ -311,7 +336,7 @@ dialog::backdrop { background: rgba(0,8,12,.82); backdrop-filter: blur(7px); }
   .shift-stats div:nth-child(2) { display: none; }
   .game-stage { display: block; }
   .terminal { min-height: 470px; }
-  .queue-lane { width: 27%; height: 68%; }
+  .queue-lane { left: 3%; top: 13%; width: 24%; height: 43%; }
   .queue-person { width: 76px; height: 76px; }
   .current-zone { left: 29%; top: 15%; width: 35%; }
   .current-traveler { width: 145px; height: 145px; }
@@ -328,7 +353,7 @@ dialog::backdrop { background: rgba(0,8,12,.82); backdrop-filter: blur(7px); }
   .eyebrow { font-size: .58rem; }
   .shift-stats { font-size: .8rem; }
   .terminal { min-height: 400px; }
-  .queue-lane { left: 1%; width: 30%; }
+  .queue-lane { left: 1%; top: 13%; width: 27%; height: 43%; }
   .queue-person { width: 62px; height: 62px; }
   .current-zone { left: 24%; width: 38%; }
   .current-traveler { width: 120px; height: 120px; }
@@ -337,6 +362,7 @@ dialog::backdrop { background: rgba(0,8,12,.82); backdrop-filter: blur(7px); }
   .counter { left: 22%; right: 2%; height: 110px; }
   .monitor { display: none; }
   .agent-station { left: 42%; }
+  .waiting-area { display: none; }
   .workdesk { padding: 16px 12px; }
   .evidence-area { min-height: 370px; }
   .passport { width: 78%; transform: scale(.88) rotate(-1.5deg); transform-origin: left top; }

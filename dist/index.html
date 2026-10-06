@@ -40,14 +40,27 @@
         <div class="terminal-sign sign-b">B12</div>
         <div class="floor-line line-a"></div>
         <div class="floor-line line-b"></div>
+        <div class="hall-board" aria-hidden="true">
+          <span><b>18:45</b> PAŘÍŽ <i>CHECK-IN B12</i></span>
+          <span><b>19:10</b> VARŠAVA <i>CHECK-IN C04</i></span>
+        </div>
 
         <div class="queue-lane" aria-label="Fronta cestujících">
           <div class="belt belt-1"></div>
           <div class="belt belt-2"></div>
           <div class="belt belt-3"></div>
           <div id="queuePeople" class="queue-people"></div>
-          <span class="queue-label">FRONTA</span>
+          <span class="queue-entry">VSTUP DO FRONTY</span>
+          <span class="queue-label">SMĚR K PŘEPÁŽCE B12</span>
         </div>
+
+        <div class="waiting-area" aria-hidden="true">
+          <span>ČEKACÍ ZÓNA</span>
+          <div class="seat-row"><i></i><i></i><i></i></div>
+          <div class="seat-row"><i></i><i></i><i></i></div>
+        </div>
+
+        <div class="floor-wayfinding" aria-hidden="true"><b>B</b><span>10–18</span></div>
 
         <div class="current-zone">
           <div id="currentTravelerSprite" class="character current-traveler sprite-1" aria-hidden="true"></div>
@@ -66,7 +79,7 @@
 
         <div class="agent-station">
           <div class="character agent sprite-0" aria-label="Check-in agentka v uniformě"></div>
-          <span class="agent-name">E. NOVÁKOVÁ</span>
+          <span class="agent-name">NATÁLKA</span>
         </div>
       </section>
 
@@ -175,7 +188,7 @@
       <div class="dialog-copy">
         <span class="dialog-label">SMĚNA 01 · LETIŠTĚ VÁCLAVA HAVLA PRAHA</span>
         <h2>VÍTEJTE NA PŘEPÁŽCE</h2>
-        <p>Odbavte osm cestujících před uzavřením letu. Porovnejte doklady, zvažte zavazadlo a všímejte si chování. Některé případy jsou rutinní. Jiné ani trochu.</p>
+        <p>Odbavte osm náhodně vybraných cestujících z 24 možných situací. Porovnejte doklady, zvažte zavazadlo a všímejte si chování. Každá směna je jiná.</p>
         <ol>
           <li><b>Prohlédněte</b> všechny tři záložky.</li>
           <li><b>Rozhodněte</b> pomocí čtyř akcí nebo kláves 1–4.</li>
